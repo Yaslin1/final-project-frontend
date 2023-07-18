@@ -1,5 +1,5 @@
-import MaterialBigCard from "../components/MaterialBigCards"
-import MaterialTable from "../components/MaterialTable"
+import MaterialBigCard from "./MaterialBigCards"
+import MaterialTable from "./MaterialTable"
 
 export default function MaterialPage() {
   return (

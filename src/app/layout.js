@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
           <aside>
           <NavigationBar/>
         </aside>
-        <main>
+        <main className="overflow-y-scroll max-h-screen">
           <SearchBar/>
           {children}
         </main>
