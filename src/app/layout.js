@@ -1,3 +1,5 @@
+import NavigationBar from './components/NavigationBar'
+import SearchBar from './components/SearchBar'
 import AuthContext from './contexts/AuthContext'
 import './globals.css'
 import { Inter } from 'next/font/google'
@@ -14,7 +16,15 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <AuthContext>
+        <div className='flex'>
+          <aside>
+          <NavigationBar/>
+        </aside>
+        <main>
+          <SearchBar/>
           {children}
+        </main>
+        </div>
         </AuthContext>
       </body>
     </html>

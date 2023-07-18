@@ -4,7 +4,7 @@ import { useContext } from "react";  // way to use information accross multiple 
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { AuthContext } from "@/app/contexts/AuthContext"
-import { useRouter } from "next/navigation";
+
 
 const firebaseConfig = {   //Credentials for firebase app
     apiKey: "AIzaSyBCxIyAShmt2H9GFCic4oUj5b53gTEwMSw",
@@ -19,9 +19,6 @@ const auth = getAuth(app); //getting authorization client using the app connecti
 
 export default function LoginForm() { 
     const { setUser } = useContext(AuthContext); //Getting set user from auth context
-    
-    const router = useRouter()  //next.js useRouter hook returns an object that allows us to navigate between pages and is being stored in router
-    const navigate = (path) => router.push(path) //next.js creating navigate function to avoid rewriting the original react code.
 
     const handleGoogle = () => {
         const provider = new GoogleAuthProvider();// creating a new instance of GoogleAuthProvider and saving it into provider
