@@ -1,8 +1,15 @@
+"use client"
+// use clients is because we are using a hook
+import { useContext } from "react"
+import { AuthContext } from "../contexts/AuthContext"
+
 export default function SearchBar() {
+  const { user } = useContext(AuthContext); //Getting set user from auth context
+console.log(user)
   return (
     <>
 
-      <header className="z-40 items-center w-full h-16 bg-white shadow-lg dark:bg-gray-700 rounded-2xl">
+      <header className="z-40 items-center w-full h-16 bg-white shadow-lg dark:bg-gray-700">
         <div className="relative z-20 flex flex-col justify-center h-full px-3 mx-auto flex-center">
           <div className="relative flex items-center w-full pl-1 lg:max-w-68 sm:pr-2 sm:ml-0">
             <div className="container relative left-0 z-50 flex w-3/4 h-auto h-full">
@@ -23,9 +30,13 @@ export default function SearchBar() {
                 </div>
               </div>
             </div>
-            <div className="relative flex items-center justify-end w-1/4 p-1 ml-5 mr-4 sm:mr-0 sm:right-auto">
-              <a href="#" className="relative block">
-                <img alt="profil" src="/images/person/1.jpg" className="mx-auto object-cover rounded-full h-10 w-10 " />
+            <div className="relative flex items-center w-1/4 justify-end p-1 ml-5 mr-4 sm:mr-0 sm:right-auto">
+            <div class="flex items-center">
+              <div class="w-px h-6 bg-gray-300"></div>
+            </div>
+              <a href="#" className="relative flex items-center">
+                <img alt="profil" src={ user?.photoURL ||"/images/profile.png"} className="ml-4 mr-2 object-cover rounded-full h-10 w-10 " />
+                <p>{user?.displayName || "Welcome"}</p>
               </a>
             </div>
           </div>
