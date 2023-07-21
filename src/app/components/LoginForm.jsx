@@ -1,20 +1,12 @@
 "use client"
 import { useContext } from "react";  // way to use information accross multiple componenets without passing it through props
+import creds from "../../../creds";
 // import { useNavigate } from "react-router-dom"; // Go from one page to another
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { AuthContext } from "@/app/contexts/AuthContext"
 
-
-const firebaseConfig = {   //Credentials for firebase app
-    apiKey: "AIzaSyBCxIyAShmt2H9GFCic4oUj5b53gTEwMSw",
-    authDomain: "chekov-yc.firebaseapp.com",
-    projectId: "chekov-yc",
-    storageBucket: "chekov-yc.appspot.com",
-    messagingSenderId: "861407056407",
-    appId: "1:861407056407:web:935c2cc40563f9b0f7c252"
-};
-const app = initializeApp(firebaseConfig); //connecting to firebase using firebaseConfig
+const app = initializeApp(creds); //connecting to firebase using firebaseConfig
 const auth = getAuth(app); //getting authorization client using the app connection I created
 
 export default function LoginForm() { 
