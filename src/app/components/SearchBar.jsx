@@ -1,11 +1,11 @@
 "use client"
-// use clients is because we are using a hook
+// use clients is because we are using a hook. Rendered client side and cannot use hooks on servers.
 import { useContext } from "react"
 import { AuthContext } from "../contexts/AuthContext"
 
 export default function SearchBar() {
   const { user } = useContext(AuthContext); //Getting set user from auth context
-console.log(user)
+
   return (
     <>
 

@@ -1,9 +1,20 @@
-"use client"
-import { useState } from "react";
+"use client" // use clients is because we are using a hook. Rendered client side and cannot use hooks on servers.
+import { useState, useContext } from "react";
+import { initializeApp } from "firebase/app"; //importing functions from library
+import { getStorage, ref, uploadBytes } from "firebase/storage"; //importing functions from library
+import creds from "../../../creds";
+import { AuthContext } from "../contexts/AuthContext";
 
 
-//TODO: Add button modal in file manager that opens the modal
-const UploadModal = () => {
+//connecting to firebase using credentials
+const app = initializeApp(creds);
+
+//connect to default bucket
+const storage = getStorage(app);
+
+
+const UploadModal = () => { //Upload modal component
+  const { user } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [files, setFiles] = useState(null);
 
@@ -13,38 +24,30 @@ const UploadModal = () => {
     message: '',
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (e) => { //on event
+    const { name, value } = e.target; // getting name and value  from the event
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission here (e.g., send data to the server)
-    console.log('Form data:', formData);
     // Close the modal after form submission
-    onClose();
-  };
-
-  const handleFile = async () => {
-    if (!files) {
-      setMsg("No file selected");
-      return;
-    }
-    const fd = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      fd.append(`file${i * 1}`, files[i]);
-    }
-
-    setMsg("Uploading...");
 
     try {
+      const url = await handleFile()
 
-      const res = await fetch("___URL___", {
+      const bodyRequest = { //Info that I am trying to save
+        ...formData, //Putting all form data into my new object
+        uid: user.uid, //getting uid from the object in firebase auth
+        url, // url from handle file function
+      }
+      const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/files`, { //request  from api
         method: "POST",
-        body: fd,
+        body: JSON.stringify(bodyRequest), //
         headers: {
-          "Custom-Header": "value",
+          "Content-Type": "application/json",
+          "Authorization": user.stsTokenManager.accessToken //passing fire the firebase token in authorization header
         }
       })
 
@@ -54,100 +57,109 @@ const UploadModal = () => {
     } catch (err) {
       console.error(err)
     }
+    setShowModal(false)
+  };
 
-    // .then(res => {
-    //   if (res.ok) {
-    //     throw new Error("Bad response")
-    //   }
-    //   setMsg("Upload successful");
-    //   return res.json();
-    // })
-    // .then(data => console.log(data))ƒ
-    // .catch( err => {
-    //   console.error(err);
-    // });
+  const handleFile = async () => {
+    const filename = files[0].name //taking an array of files and starting with the first index and getting name of file
+
+    //create a reference to our file in storage
+    const imageRef = files[0].type.includes("image")
+      ? ref(storage, `images/${filename}`) //ref is a function and () is a parameter if file is an image then store it in the image folder
+      : ref(storage, `files/${filename}`) //else put it in file.
+
+    //Todd's quick cheat- create URL from reference
+    const url = files[0].type.includes("image")
+      ? `https://firebasestorage.googleapis.com/v0/b/lms-web-yc.appspot.com/o/images%2F${encodeURI(filename)}?alt=media` //encode URI turns the file name into URL
+      : `https://firebasestorage.googleapis.com/v0/b/lms-web-yc.appspot.com/o/files%2F${encodeURI(filename)}?alt=media`
+
+    // //upload file to bucket
+    await uploadBytes(imageRef, files[0]); //
+    return url
   }
 
   return (
     <>
-      <input onChange={(e) => { setFiles(e.target.files) }} type="file" multiple>
-        <button onClick={() => setShowModal(true) && { handleUpload }} type="button" class="py-2 px-4 flex justify-center items-center  bg-zinc-200 hover:bg-zinc-200 focus:ring-zinc-200 focus:ring-offset-zinc-200 text-zinc w-2rem transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-          <svg width="20" height="20" fill="currentColor" class="mr-2" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z">
-            </path>
-          </svg>
-          Upload
-        </button>
-        {showModal &&
-          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-            <div className="bg-white p-6 rounded-md shadow-lg">
-              <h2 className="text-xl font-semibold mb-4">Upload Files</h2>
-              <form onSubmit={handleSubmit}>
-                <div>
-                  <p>Drag and drop your files here</p>
-                  <div class="flex items-center justify-center w-full">
-                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                      <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                        </svg>
-                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-                      </div>
-                      <input id="dropzone-file" type="file" class="hidden" />
-                    </label>
-                  </div>
-                </div>
-                <label className="block mb-2">
-                  Name
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full border rounded px-3 py-2"
-                    required
-                  />
-                </label>
-                <label className="block mb-2">
-                  Tag
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full border rounded px-3 py-2"
-                    required
-                  />
-                </label>
-                <label className="block mb-2">
-                  Description
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="w-full border rounded px-3 py-2"
-                    rows="4"
-                    required
-                  />
-                </label>
-                <div className="flex w-full justify-around">
-                  <button
-                    type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
-                    Submit
-                  </button>
-                  <button
-                    onClick={() => setShowModal(false)}
-                    className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
-                    Cancel
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div >
-        }
-      </input>
+      <button onClick={() => setShowModal(true)} type="button" class="py-2 px-4 flex justify-center items-center  bg-zinc-200 hover:bg-zinc-200 focus:ring-zinc-200 focus:ring-offset-zinc-200 text-zinc w-2rem transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+        <svg width="20" height="20" fill="currentColor" class="mr-2" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z">
+          </path>
+        </svg>
+        Upload
+      </button>
+      {showModal &&
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-md shadow-lg">
+            <h2 className="text-xl font-semibold mb-4">Upload Files</h2>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <p>Drag and drop your files here</p>
+                {
+                  files
+                    ? <p>{files[0].name} Loaded<span onClick={()=>setFiles(null)}>❌</span></p>
+                    : <div class="flex items-center justify-center w-full">
+                      <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                          <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                          </svg>
+                          <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                          <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                        </div>
+                        <input onChange={(e) => { setFiles(e.target.files) }} id="dropzone-file" type="file" class="hidden" />
+                      </label>
+                    </div>
+                }
+              </div>
+              <label className="block mb-2">
+                Name
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full border rounded px-3 py-2"
+                // required
+                />
+              </label>
+              <label className="block mb-2">
+                Tag
+                <input
+                  type="text"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full border rounded px-3 py-2"
+                // required
+                />
+              </label>
+              <label className="block mb-2">
+                Description
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full border rounded px-3 py-2"
+                  rows="4"
+                // required
+                />
+              </label>
+              <div className="flex w-full justify-around">
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
+                  Submit
+                </button>
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div >
+      }
     </>
   );
 };

@@ -5,8 +5,8 @@ import MaterialTable from "./MaterialTable"
 export default function MaterialPage() {
   return (
     <>
-   <MaterialBigCard/>
-   <MaterialTable/>
+      <MaterialBigCard />
+      <MaterialTable />
     </>
   )
 }

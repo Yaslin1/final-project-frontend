@@ -1,4 +1,12 @@
 export default function MaterialTable() {
+  /*
+  TODO
+    - fetch files from api
+    - map through them so they show in table
+    - style cards with file types
+  */
+
+  // Fetch here --- > X
   return (
     <>
       <div className="container px-4 mx-auto sm:px-8">
@@ -40,6 +48,7 @@ export default function MaterialTable() {
                   </tr>
                 </thead>
                 <tbody>
+                  {/* .map through data and display. You only need one <tr> */}
                   <tr>
                     <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                       <div className="flex items-center">
