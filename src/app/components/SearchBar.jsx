@@ -15,7 +15,7 @@ export default function SearchBar() {
             <div className="container relative left-0 z-50 flex w-3/4 h-auto h-full">
               <div className="relative flex items-center w-full h-full lg:w-64 group">
                 <div className="absolute z-50 flex items-center justify-center block w-auto h-10 p-3 pr-2 text-sm text-gray-500 uppercase cursor-pointer sm:hidden">
-                  <svg fill="none" className="relative w-5 h-5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg fill="none" className="relative w-5 h-5" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" stroke="currentColor" viewBox="0 0 24 24">
                     <path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z">
                     </path>
                   </svg>
@@ -31,8 +31,8 @@ export default function SearchBar() {
               </div>
             </div>
             <div className="relative flex items-center w-1/4 justify-end p-1 ml-5 mr-4 sm:mr-0 sm:right-auto">
-            <div class="flex items-center">
-              <div class="w-px h-6 bg-gray-300"></div>
+            <div className="flex items-center">
+              <div className="w-px h-6 bg-gray-300"></div>
             </div>
               <a href="#" className="relative flex items-center">
                 <img alt="profil" src={ user?.photoURL ||"/images/profile.png"} className="ml-4 mr-2 object-cover rounded-full h-10 w-10 " />

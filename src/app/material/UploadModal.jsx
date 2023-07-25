@@ -20,8 +20,8 @@ const UploadModal = () => { //Upload modal component
 
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
-    message: '',
+    tag: '',
+    description: '',
   });
 
   const handleChange = (e) => { //on event
@@ -36,11 +36,13 @@ const UploadModal = () => { //Upload modal component
 
     try {
       const url = await handleFile()
-
+      const typeInfo = files[0].type.split('/')
       const bodyRequest = { //Info that I am trying to save
         ...formData, //Putting all form data into my new object
         uid: user.uid, //getting uid from the object in firebase auth
         url, // url from handle file function
+        type:typeInfo[0], //value will be image or file
+        format:typeInfo[1] //value will be format such as pdf or png etc.
       }
       const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/files`, { //request  from api
         method: "POST",
@@ -80,8 +82,8 @@ const UploadModal = () => { //Upload modal component
 
   return (
     <>
-      <button onClick={() => setShowModal(true)} type="button" class="py-2 px-4 flex justify-center items-center  bg-zinc-200 hover:bg-zinc-200 focus:ring-zinc-200 focus:ring-offset-zinc-200 text-zinc w-2rem transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-        <svg width="20" height="20" fill="currentColor" class="mr-2" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+      <button onClick={() => setShowModal(true)} type="button" className="py-2 px-4 flex justify-center items-center  bg-zinc-200 hover:bg-zinc-200 focus:ring-zinc-200 focus:ring-offset-zinc-200 text-zinc w-2rem transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+        <svg width="20" height="20" fill="currentColor" className="mr-2" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
           <path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z">
           </path>
         </svg>
@@ -97,16 +99,16 @@ const UploadModal = () => { //Upload modal component
                 {
                   files
                     ? <p>{files[0].name} Loaded<span onClick={()=>setFiles(null)}>❌</span></p>
-                    : <div class="flex items-center justify-center w-full">
-                      <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                          <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                    : <div className="flex items-center justify-center w-full">
+                      <label for="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                          <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                           </svg>
-                          <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                          <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                          <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                         </div>
-                        <input onChange={(e) => { setFiles(e.target.files) }} id="dropzone-file" type="file" class="hidden" />
+                        <input onChange={(e) => { setFiles(e.target.files) }} id="dropzone-file" type="file" className="hidden" />
                       </label>
                     </div>
                 }
@@ -126,8 +128,8 @@ const UploadModal = () => { //Upload modal component
                 Tag
                 <input
                   type="text"
-                  name="email"
-                  value={formData.email}
+                  name="tag"
+                  value={formData.tag}
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2"
                 // required
@@ -136,10 +138,10 @@ const UploadModal = () => { //Upload modal component
               <label className="block mb-2">
                 Description
                 <textarea
-                  name="message"
-                  value={formData.message}
+                  name="description"
+                  value={formData.description}
                   onChange={handleChange}
-                  className="w-full border rounded px-3 py-2"
+                  className="w-full border rounded px-3 py-2 resize-none"
                   rows="4"
                 // required
                 />
