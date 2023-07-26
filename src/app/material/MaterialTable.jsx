@@ -1,31 +1,13 @@
-"use client"
-import { useEffect, useState } from "react"
-
-export default function MaterialTable() {
+export default function MaterialTable({filteredList, setFilteredList}) {
   /*
   TODO
     - style cards with file types
     - finish building out tables limit the about viewed and show on next page.
     - Filter table by type, tags, and dates
     - Input dates in last modified
+    - Show all refreshes entire page remove this 
   */
-
-  const [fileList, setFile] = useState()
-
-  useEffect(() => {
-
-    const tableInfo = async () => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/files`)
-      const data = await res.json()
-      setFile(data)
-    }
-    try {
-
-      tableInfo()
-    } catch (err) {
-      console.error(err)
-    }
-  }, [])
+ console.log(filteredList)
 
   return (
     <>
@@ -37,11 +19,8 @@ export default function MaterialTable() {
             </h2>
             <div className="text-end">
               <form className="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0">
-                <div className=" relative ">
-                  <input type="text" id="&quot;form-subscribe-Filter" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="name" />
-                </div>
-                <button className="flex-shrink-0 px-4 py-2 text-base font-semibold text-zinc-800 bg-zinc-200 rounded-lg shadow-md hover:bg-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-200" type="submit">
-                  Filter
+                <button onClick={() => setFilteredList()} className="flex-shrink-0 px-4 py-2 text-base font-semibold text-zinc-800 bg-zinc-200 rounded-lg shadow-md hover:bg-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-200" type="submit">
+                  Show All
                 </button>
               </form>
             </div>
@@ -68,7 +47,7 @@ export default function MaterialTable() {
                   </tr>
                 </thead>
                 <tbody>
-                  {fileList?.map((file, i) => (
+                  {filteredList?.map((file, i) => (
                     <tr key={`material-table-${i}`}>
                       <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                         <div className="flex items-center">

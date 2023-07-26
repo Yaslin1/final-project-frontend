@@ -2,9 +2,52 @@
 import UploadModal from "./UploadModal"
 import React, { useState } from "react"
 
+export default function MaterialBigCard({fileList, setFilteredList}) {
 
+  const handlePdf = () => {
+    const pdfs = fileList.filter(file => file.format === "pdf")
+    setFilteredList(pdfs)
+  }
 
-export default function MaterialBigCard() {
+  const handleDoc = () => {
+    const docTypes = {
+      txt:true,
+      rtf: true,
+      doc: true,
+      docm: true,
+      docx: true,
+      pages: true,
+      html: true,
+    }
+    const docs = fileList.filter(file => docTypes[file.format])
+    setFilteredList(docs)
+  }
+
+  const handlePpt = () => {
+    const pptTypes = {
+      ppt: true,
+      ppsx:true,
+      pptx: true,
+      key: true,
+    }
+    const ppt = fileList.filter(file => pptTypes[file.format])
+    setFilteredList(ppt)
+  }
+
+  const handleExcel = () => {
+    const excelTypes = {
+      xlsx: true,
+      xls:true,
+      xlsb: true,
+      xltm: true,
+      xlsm: true,
+      xml: true,
+      numbers: true,
+
+    }
+    const excel = fileList.filter(file => excelTypes[file.format])
+    setFilteredList(excel)
+  }
 
   return (
     <>
@@ -18,19 +61,23 @@ export default function MaterialBigCard() {
       {/* Big Cards */}
       < section className="text-gray-600 body-font" >
         <div className="container px-5 py-10 mx-auto">
-          File Type
+          <div className="mb-6">
+            File Type
+          </div>
           <div className="flex flex-wrap -m-4">
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full bg-zinc-50">
-              <a className="block relative h-48 rounded overflow-hidden">
+          {/* PDF Card */}
+            <div onClick={handlePdf} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-zinc-50">
+              <div className="block relative h-48 rounded overflow-hidden">
                 <img alt="ecommerce" className="object-cover object-center w-full h-full block" src="/images/pdf1.png" />
-              </a>
+              </div>
               <div className="mt-4">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">PDF Files</h2>
                 {/* <p className="mt-1">$21.15</p> */}
               </div>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full bg-zinc-50">
+           {/* Document Card */}
+            <div onClick={handleDoc} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-zinc-50">
               <a className="block relative h-48 rounded overflow-hidden">
                 <img alt="ecommerce" className="object-cover object-center w-full h-full block" src="/images/doc1.png" />
               </a>
@@ -40,7 +87,8 @@ export default function MaterialBigCard() {
                 {/* <p className="mt-1">$16.00</p> */}
               </div>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full bg-zinc-50">
+           {/* PowerPoint Card */}
+            <div onClick={handlePpt} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-zinc-50">
               <a className="block relative h-48 rounded overflow-hidden">
                 <img alt="ecommerce" className="object-cover object-center w-full h-full block" src="/images/ppt1.png" />
               </a>
@@ -50,7 +98,8 @@ export default function MaterialBigCard() {
                 {/* <p className="mt-1">$12.00</p> */}
               </div>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full bg-zinc-50">
+             {/* Excel Card */}
+            <div onClick={handleExcel} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-zinc-50">
               <a className="block relative h-48 rounded overflow-hidden">
                 <img alt="ecommerce" className="object-cover object-center w-full h-full block" src="/images/xls1.png" />
               </a>

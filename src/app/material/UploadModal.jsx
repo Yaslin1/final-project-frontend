@@ -37,12 +37,13 @@ const UploadModal = () => { //Upload modal component
     try {
       const url = await handleFile()
       const typeInfo = files[0].type.split('/')
+      const format = files[0].name.split('.')[1]
       const bodyRequest = { //Info that I am trying to save
         ...formData, //Putting all form data into my new object
         uid: user.uid, //getting uid from the object in firebase auth
         url, // url from handle file function
         type:typeInfo[0], //value will be image or file
-        format:typeInfo[1] //value will be format such as pdf or png etc.
+        format //value will be format such as pdf or png etc.
       }
       const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/files`, { //request  from api
         method: "POST",
