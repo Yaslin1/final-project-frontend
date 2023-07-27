@@ -64,11 +64,11 @@ export default function MaterialBigCard({fileList, setFilteredList}) {
           <div className="mb-6">
             File Type
           </div>
-          <div className="flex flex-wrap -m-4">
+          <div className="flex flex-wrap m-4 w-full justify-evenly">
           {/* PDF Card */}
-            <div onClick={handlePdf} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-zinc-50">
+            <div onClick={handlePdf} className="lg:w-1/6 md:w-1/2 p-4 rounded-lg bg-zinc-50 cursor-pointer">
               <div className="block relative h-48 rounded overflow-hidden">
-                <img alt="ecommerce" className="object-cover object-center w-full h-full block" src="/images/pdf1.png" />
+                <img alt="ecommerce" className="object-center w-28 h-28 block" src="/images/pdf1.png" />
               </div>
               <div className="mt-4">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -77,9 +77,9 @@ export default function MaterialBigCard({fileList, setFilteredList}) {
               </div>
             </div>
            {/* Document Card */}
-            <div onClick={handleDoc} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-zinc-50">
+            <div onClick={handleDoc} className="lg:w-1/6 md:w-1/2 p-4 rounded-lg bg-zinc-50 cursor-pointer">
               <a className="block relative h-48 rounded overflow-hidden">
-                <img alt="ecommerce" className="object-cover object-center w-full h-full block" src="/images/doc1.png" />
+                <img alt="ecommerce" className="object-center w-28 h-28 block" src="/images/doc1.png" />
               </a>
               <div className="mt-4">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -88,9 +88,9 @@ export default function MaterialBigCard({fileList, setFilteredList}) {
               </div>
             </div>
            {/* PowerPoint Card */}
-            <div onClick={handlePpt} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-zinc-50">
+            <div onClick={handlePpt} className="lg:w-1/6 md:w-1/2 p-4 w rounded-lg bg-zinc-50 cursor-pointer">
               <a className="block relative h-48 rounded overflow-hidden">
-                <img alt="ecommerce" className="object-cover object-center w-full h-full block" src="/images/ppt1.png" />
+                <img alt="ecommerce" className="object-center w-28 h-28 block" src="/images/ppt1.png" />
               </a>
               <div className="mt-4">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -99,9 +99,9 @@ export default function MaterialBigCard({fileList, setFilteredList}) {
               </div>
             </div>
              {/* Excel Card */}
-            <div onClick={handleExcel} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-zinc-50">
+            <div onClick={handleExcel} className="lg:w-1/6 md:w-1/2 p-4 rounded-lg bg-zinc-50 cursor-pointer">
               <a className="block relative h-48 rounded overflow-hidden">
-                <img alt="ecommerce" className="object-cover object-center w-full h-full block" src="/images/xls1.png" />
+                <img alt="ecommerce" className="object-center w-28 h-28 block" src="/images/xls1.png" />
               </a>
               <div className="mt-4">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
