@@ -2,7 +2,7 @@
 import UploadModal from "./UploadModal"
 import React, { useState } from "react"
 
-export default function MaterialBigCard({fileList, setFilteredList}) {
+export default function MaterialBigCard({fileList, setFileList, setFilteredList}) {
 
   const handlePdf = () => {
     const pdfs = fileList.filter(file => file.format === "pdf")
@@ -55,7 +55,10 @@ export default function MaterialBigCard({fileList, setFilteredList}) {
         <h1 className="text-2xl">Material</h1>
         <div>
           {/* Your page content here */}
-          <UploadModal />
+          <UploadModal updateList={(file)=> {
+            setFileList( prev => ([...prev, file]))
+            setFilteredList()
+          }}/>
         </div>
       </div >
       {/* Big Cards */}
@@ -67,8 +70,8 @@ export default function MaterialBigCard({fileList, setFilteredList}) {
           <div className="flex flex-wrap m-4 w-full justify-evenly">
           {/* PDF Card */}
             <div onClick={handlePdf} className="lg:w-1/6 md:w-1/2 p-4 rounded-lg bg-zinc-50 cursor-pointer">
-              <div className="block relative h-48 rounded overflow-hidden">
-                <img alt="ecommerce" className="object-center w-28 h-28 block" src="/images/pdf1.png" />
+              <div className="flex items-center relative h-36 rounded overflow-hidden">
+                <img alt="ecommerce" className="mx-auto w-28 h-28 block" src="/images/pdf1.png" />
               </div>
               <div className="mt-4">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -78,8 +81,8 @@ export default function MaterialBigCard({fileList, setFilteredList}) {
             </div>
            {/* Document Card */}
             <div onClick={handleDoc} className="lg:w-1/6 md:w-1/2 p-4 rounded-lg bg-zinc-50 cursor-pointer">
-              <a className="block relative h-48 rounded overflow-hidden">
-                <img alt="ecommerce" className="object-center w-28 h-28 block" src="/images/doc1.png" />
+              <a className="flex items-center relative h-36 rounded overflow-hidden">
+                <img alt="ecommerce" className="mx-auto w-28 h-28 block" src="/images/doc1.png" />
               </a>
               <div className="mt-4">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -89,8 +92,8 @@ export default function MaterialBigCard({fileList, setFilteredList}) {
             </div>
            {/* PowerPoint Card */}
             <div onClick={handlePpt} className="lg:w-1/6 md:w-1/2 p-4 w rounded-lg bg-zinc-50 cursor-pointer">
-              <a className="block relative h-48 rounded overflow-hidden">
-                <img alt="ecommerce" className="object-center w-28 h-28 block" src="/images/ppt1.png" />
+              <a className="flex items-center relative h-36 rounded overflow-hidden">
+                <img alt="ecommerce" className="mx-auto w-28 h-28 block" src="/images/ppt1.png" />
               </a>
               <div className="mt-4">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -100,8 +103,8 @@ export default function MaterialBigCard({fileList, setFilteredList}) {
             </div>
              {/* Excel Card */}
             <div onClick={handleExcel} className="lg:w-1/6 md:w-1/2 p-4 rounded-lg bg-zinc-50 cursor-pointer">
-              <a className="block relative h-48 rounded overflow-hidden">
-                <img alt="ecommerce" className="object-center w-28 h-28 block" src="/images/xls1.png" />
+              <a className="flex items-center relative h-36 rounded overflow-hidden">
+                <img alt="ecommerce" className="mx-auto w-28 h-28 block" src="/images/xls1.png" />
               </a>
               <div className="mt-4">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>

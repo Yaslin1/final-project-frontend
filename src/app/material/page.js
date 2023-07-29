@@ -7,7 +7,7 @@ import MaterialTable from "./MaterialTable"
 export default function MaterialPage() {
 
   const [fileList, setFile] = useState()
-  const [filteredList, setFilteredList] = useState()
+  const [filteredList, setFilteredList] = useState([])
 
   useEffect(() => {
 
@@ -15,6 +15,7 @@ export default function MaterialPage() {
       const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/files`)
       const data = await res.json()
       setFile(data)
+      setFilteredList(data)
     }
     try {
 
@@ -24,11 +25,13 @@ export default function MaterialPage() {
     }
   }, [])
 
-
   return (
     <>
-      <MaterialBigCard fileList={fileList} setFilteredList={setFilteredList}/>
-      <MaterialTable filteredList={filteredList || fileList} setFilteredList={setFilteredList}/>
+      <MaterialBigCard
+        fileList={fileList}
+        setFileList={setFile}
+        setFilteredList={setFilteredList} />
+      <MaterialTable filteredList={filteredList || fileList} setFilteredList={setFilteredList} />
     </>
   )
 }

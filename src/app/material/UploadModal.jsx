@@ -13,7 +13,7 @@ const app = initializeApp(creds);
 const storage = getStorage(app);
 
 
-const UploadModal = () => { //Upload modal component
+const UploadModal = ({updateList}) => { //Upload modal component
   const { user } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [files, setFiles] = useState(null);
@@ -38,6 +38,7 @@ const UploadModal = () => { //Upload modal component
       const url = await handleFile()
       const typeInfo = files[0].type.split('/')
       const format = files[0].name.split('.')[1]
+
       const bodyRequest = { //Info that I am trying to save
         ...formData, //Putting all form data into my new object
         uid: user.uid, //getting uid from the object in firebase auth
@@ -55,7 +56,7 @@ const UploadModal = () => { //Upload modal component
       })
 
       const data = await res.json()
-      console.log(data)
+      updateList(bodyRequest)
 
     } catch (err) {
       console.error(err)
@@ -92,14 +93,19 @@ const UploadModal = () => { //Upload modal component
       </button>
       {showModal &&
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-md shadow-lg">
+          <div className="bg-white p-6 rounded-md shadow-lg  w-2/6">
             <h2 className="text-xl font-semibold mb-4">Upload Files</h2>
             <form onSubmit={handleSubmit}>
               <div>
-                <p>Drag and drop your files here</p>
+                {/* <p>Drag and drop your files here</p> */}
+                {/* <img className="object-center w-28 h-28 block" src="/images/cloudicon2.png"></img> */}
                 {
                   files
-                    ? <p>{files[0].name} Loaded<span onClick={()=>setFiles(null)}>❌</span></p>
+                    ? <div className="flex justify-between items-center p-2 bg-gray-100 rounded-lg shadow-sm">
+                        <img src="/images/docs.png" alt="document image" className="w-6" />{files[0].name}
+                        <span onClick={()=>setFiles(null)}>
+                          <svg className="fill-gray-600" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg>
+                        </span></div>
                     : <div className="flex items-center justify-center w-full">
                       <label for="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -114,7 +120,7 @@ const UploadModal = () => { //Upload modal component
                     </div>
                 }
               </div>
-              <label className="block mb-2">
+              <label className="block mb-2 mt-4">
                 Name
                 <input
                   type="text"
@@ -122,10 +128,10 @@ const UploadModal = () => { //Upload modal component
                   value={formData.name}
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2"
-                // required
+                required
                 />
               </label>
-              <label className="block mb-2">
+              <label className="block mb-2 mt-4">
                 Tag
                 <input
                   type="text"
@@ -133,10 +139,10 @@ const UploadModal = () => { //Upload modal component
                   value={formData.tag}
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2"
-                // required
+                required
                 />
               </label>
-              <label className="block mb-2">
+              <label className="block mb-2 mt-4">
                 Description
                 <textarea
                   name="description"
@@ -144,7 +150,7 @@ const UploadModal = () => { //Upload modal component
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2 resize-none"
                   rows="4"
-                // required
+                required
                 />
               </label>
               <div className="flex w-full justify-around">
