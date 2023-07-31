@@ -14,7 +14,16 @@ const firebaseConfig = {
     messagingSenderId: "861407056407",
     appId: "1:861407056407:web:935c2cc40563f9b0f7c252"
 };
-const app = initializeApp(firebaseConfig);
+
+// To check for multiple apps. Currently working without this.
+// Import needed for compatibility with Next
+// import firebase from 'firebase/compat/app';
+// const app = !firebase.apps?.length
+//     ? initializeApp(firebaseConfig, "auth")
+//     : firebase.app()
+
+// Other is needed because its currently connecting to two projects
+const app = initializeApp(firebaseConfig, "other");
 const auth = getAuth(app);
 
 export default function SignUpForm() {

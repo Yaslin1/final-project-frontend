@@ -5,7 +5,7 @@ import pdfImage from "../../../public/images/pdf1.png"
 import docImage from "../../../public/images/doc1.png"
 import pptImage from "../../../public/images/ppt1.png"
 import excelImage from "../../../public/images/xls1.png"
-import defaultImage from "../../../public/images/pdf1.png"
+
 
 export default function MaterialTable({ filteredList, setFilteredList }) {
 
@@ -265,8 +265,8 @@ export default function MaterialTable({ filteredList, setFilteredList }) {
                       </path>
                     </svg>
                   </button>
-                  {Array.from({ length: Math.ceil(filteredList.length / itemsPerPage) }, (_, i) => i + 1).map((page) => (
-                    <button Key={`page-${page}`} type="button" className={`${currentPage === page ? "bg-gray-100" : "bg-white"} w-full px-4 py-2 text-base text-indigo-500 border-t border-b hover:bg-gray-100`}
+                  {Array.from({ length: Math.ceil(filteredList.length / itemsPerPage) }, (_, i) => i + 1).map((page, i) => (
+                    <button key={`page-${page}-${i}`} type="button" className={`${currentPage === page ? "bg-gray-100" : "bg-white"} w-full px-4 py-2 text-base text-indigo-500 border-t border-b hover:bg-gray-100`}
                       onClick={() => setCurrentPage(page)}>
                       {page}
                     </button>

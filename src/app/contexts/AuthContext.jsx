@@ -7,7 +7,7 @@ import LoginForm from "@/app/components/LoginForm"
 export const AuthContext = createContext() //creating context to use for Authroization
 
 export default function AuthContextComponent({ children }) { //children between react components
-  
+
   const pathname = usePathname();
   const [user, setUserState] = useState() //store user info as usestate
   const setUser = (user) => { //store in session and in state so it doesn't logout person
@@ -29,11 +29,11 @@ export default function AuthContextComponent({ children }) { //children between 
         !user && pathname !== '/signup'
           ? <main className="bg-violet-900 min-h-screen text-orange-50 px-4 py-8 text-center">
             <h1>Login</h1>
-                        <LoginForm />
+            <LoginForm />
             <p className="mt-4">Not a user? <Link href="/signup" className="text-sky-300">Sign Up</Link>
             </p>
           </main>
-          : <>{ children }</>
+          : <>{children}</>
       }
     </AuthContext.Provider>
   )
