@@ -13,7 +13,7 @@ const app = initializeApp(creds);
 const storage = getStorage(app);
 
 
-const UploadModal = ({updateList}) => { //Upload modal component
+const UploadModal = ({ updateList }) => { //Upload modal component
   const { user } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [files, setFiles] = useState(null);
@@ -43,7 +43,7 @@ const UploadModal = ({updateList}) => { //Upload modal component
         ...formData, //Putting all form data into my new object
         uid: user.uid, //getting uid from the object in firebase auth
         url, // url from handle file function
-        type:typeInfo[0], //value will be image or file
+        type: typeInfo[0], //value will be image or file
         format //value will be format such as pdf or png etc.
       }
       const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/files`, { //request  from api
@@ -102,10 +102,10 @@ const UploadModal = ({updateList}) => { //Upload modal component
                 {
                   files
                     ? <div className="flex justify-between items-center p-2 bg-gray-100 rounded-lg shadow-sm">
-                        <img src="/images/docs.png" alt="document image" className="w-6" />{files[0].name}
-                        <span onClick={()=>setFiles(null)}>
-                          <svg className="fill-gray-600" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg>
-                        </span></div>
+                      <img src="/images/docs.png" alt="document image" className="w-6" />{files[0].name}
+                      <span onClick={() => setFiles(null)}>
+                        <svg className="fill-gray-600" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" /></svg>
+                      </span></div>
                     : <div className="flex items-center justify-center w-full">
                       <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -128,7 +128,7 @@ const UploadModal = ({updateList}) => { //Upload modal component
                   value={formData.name}
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2"
-                required
+                  required
                 />
               </label>
               <label className="block mb-2 mt-4">
@@ -139,7 +139,7 @@ const UploadModal = ({updateList}) => { //Upload modal component
                   value={formData.tag}
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2"
-                required
+                  required
                 />
               </label>
               <label className="block mb-2 mt-4">
@@ -150,20 +150,21 @@ const UploadModal = ({updateList}) => { //Upload modal component
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2 resize-none"
                   rows="4"
-                required
+                  required
                 />
               </label>
               <div className="flex w-full justify-around">
-                <button
-                  type="submit"
-                  className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
-                  Submit
-                </button>
                 <button
                   onClick={() => setShowModal(false)}
                   className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
                   Cancel
                 </button>
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
+                  Submit
+                </button>
+
               </div>
             </form>
           </div>
