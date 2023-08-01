@@ -37,10 +37,16 @@ export default function AgendaPage() {
   },[])
 
   return (
-    <>
-      <div className="flex w-full justify-between px-4 pt-10">
+    <div className="px-6 ">
+      <div className="flex w-full justify-between pt-10">
         <h1 className="text-2xl">Agenda </h1>
       </div >
+      {/* Week Plus Sign */}
+        <svg className="cursor-pointer w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        onClick={() => setAgenda([...agenda, [[]]])}>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+
       <section className="flex w-full justify-between">
         <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
           <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
@@ -59,9 +65,6 @@ export default function AgendaPage() {
               <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Week 4</button>
             </li> */}
           </ul>
-        </div>
-        <div onClick={() => setAgenda([...agenda, [[]]])}>
-          ➕
         </div>
       </section>
       <section className="flex">
@@ -121,6 +124,6 @@ export default function AgendaPage() {
         }
       </section>
 
-    </>
+    </div>
   )
 }
