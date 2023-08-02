@@ -7,7 +7,7 @@ import pptImage from "../../../public/images/ppt1.png"
 import excelImage from "../../../public/images/xls1.png"
 
 
-export default function MaterialTable({ filteredList, setFilteredList }) {
+export default function MaterialTable({ filteredList, setFilteredList }) { //Props passed from parent element
 
   const [nameSort, setNameSort] = useState()
   const [tagSort, setTagSort] = useState()

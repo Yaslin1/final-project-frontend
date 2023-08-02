@@ -44,7 +44,7 @@ export default function AgendaPage() {
       </div >
       {/* Week Plus Sign */}
       <section className="flex w-full justify-between items-center ">
-        <svg className="cursor-pointer w-9 h-9 stroke-slate-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        <svg className="cursor-pointer w-9 h-9 stroke-slate-500 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
           onClick={() => setAgenda([...agenda, [[]]])}>
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
