@@ -63,52 +63,52 @@ export default function MaterialBigCard({fileList, setFileList, setFilteredList}
       </div >
       {/* Big Cards */}
       < section className="text-gray-600 body-font" >
-        <div className="container px-5 py-10 mx-auto">
-          <div className="mb-6">
+        <div className="container md:px-5 p-2 md:py-10 mx-auto">
+          <div className="mb-2 md:mb-6">
             File Type
           </div>
-          <div className="flex flex-wrap m-4 w-full justify-evenly">
+          <div className="flex flex-wrap md:m-4 w-full justify-evenly">
           {/* PDF Card */}
-            <div onClick={handlePdf} className="lg:w-1/6 md:w-1/2 p-4 rounded-lg bg-zinc-50 cursor-pointer">
-              <div className="flex items-center relative h-36 rounded overflow-hidden">
-                <img alt="ecommerce" className="mx-auto w-28 h-28 block" src="/images/pdf1.png" />
+            <div onClick={handlePdf} className="w-1/4 lg:w-1/6 md:w-1/2 md:p-4 rounded-lg bg-zinc-50 cursor-pointer">
+              <div className="flex items-center relative md:h-36 rounded overflow-hidden">
+                <img alt="ecommerce" className="mx-auto md:w-28 md:h-28 block" src="/images/pdf1.png" />
               </div>
               <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">PDF Files</h2>
+                <h3 className="hidden md:block text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                <h2 className="hidden md:block text-gray-900 title-font text-lg font-medium">PDF Files</h2>
                 {/* <p className="mt-1">$21.15</p> */}
               </div>
             </div>
            {/* Document Card */}
-            <div onClick={handleDoc} className="lg:w-1/6 md:w-1/2 p-4 rounded-lg bg-zinc-50 cursor-pointer">
-              <a className="flex items-center relative h-36 rounded overflow-hidden">
-                <img alt="ecommerce" className="mx-auto w-28 h-28 block" src="/images/doc1.png" />
+            <div onClick={handleDoc} className="w-1/4 lg:w-1/6 md:w-1/2 md:p-4 rounded-lg bg-zinc-50 cursor-pointer">
+              <a className="flex items-center relative md:h-36 rounded overflow-hidden">
+                <img alt="ecommerce" className="mx-auto md:w-28 md:h-28 block" src="/images/doc1.png" />
               </a>
               <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">Document</h2>
+                <h3 className="hidden md:block text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                <h2 className="hidden md:block text-gray-900 title-font text-lg font-medium">Word</h2>
                 {/* <p className="mt-1">$16.00</p> */}
               </div>
             </div>
            {/* PowerPoint Card */}
-            <div onClick={handlePpt} className="lg:w-1/6 md:w-1/2 p-4 w rounded-lg bg-zinc-50 cursor-pointer">
-              <a className="flex items-center relative h-36 rounded overflow-hidden">
-                <img alt="ecommerce" className="mx-auto w-28 h-28 block" src="/images/ppt1.png" />
+            <div onClick={handlePpt} className="w-1/4 lg:w-1/6 md:w-1/2 md:p-4 w rounded-lg bg-zinc-50 cursor-pointer">
+              <a className="flex items-center relative md:h-36 rounded overflow-hidden">
+                <img alt="ecommerce" className="mx-auto md:w-28 md:h-28 block" src="/images/ppt1.png" />
               </a>
               <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">PowerPoint</h2>
+                <h3 className="hidden md:block text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                <h2 className="hidden md:block text-gray-900 title-font text-lg font-medium">PowerPoint</h2>
                 {/* <p className="mt-1">$12.00</p> */}
               </div>
             </div>
              {/* Excel Card */}
-            <div onClick={handleExcel} className="lg:w-1/6 md:w-1/2 p-4 rounded-lg bg-zinc-50 cursor-pointer">
-              <a className="flex items-center relative h-36 rounded overflow-hidden">
-                <img alt="ecommerce" className="mx-auto w-28 h-28 block" src="/images/xls1.png" />
+            <div onClick={handleExcel} className="w-1/4 lg:w-1/6 md:w-1/2 md:p-4 rounded-lg bg-zinc-50 cursor-pointer">
+              <a className="flex items-center relative md:h-36 rounded overflow-hidden">
+                <img alt="ecommerce" className="mx-auto md:w-28 md:h-28 block" src="/images/xls1.png" />
               </a>
               <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">Excel</h2>
+                <h3 className="hidden md:block text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                <h2 className="hidden md:block text-gray-900 title-font text-lg font-medium">Excel</h2>
                 {/* <p className="mt-1">$18.40</p> */}
               </div>
             </div>

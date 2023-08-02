@@ -145,8 +145,8 @@ export default function MaterialTable({ filteredList, setFilteredList }) {
               All Files
             </h2>
             <div className="text-end">
-              <form className="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0">
-                <button onClick={() => setFilteredList()} className="flex-shrink-0 px-4 py-2 text-base font-semibold text-zinc-800 bg-zinc-200 rounded-lg shadow-md hover:bg-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-200" type="button">
+              <form className="flex flex-col justify-center md:w-3/4 md:max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0">
+                <button onClick={() => setFilteredList()} className="whitespace-nowrap flex-shrink-0 px-4 py-2 text-base font-semibold text-zinc-800 bg-zinc-200 rounded-lg shadow-md hover:bg-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-200">
                   Show All
                 </button>
               </form>
@@ -170,13 +170,13 @@ export default function MaterialTable({ filteredList, setFilteredList }) {
                         }
                       </div>
                     </th>
-                    <th scope="col" className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                    <th scope="col" className="hidden md:table-cell px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
                       Type
                     </th>
-                    <th scope="col" className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                    <th scope="col" className="hidden md:table-cell px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
                       Last Modified
                     </th>
-                    <th scope="col" className="flex items-center px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                    <th scope="col" className="hidden md:table-cellflex items-center px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
                       tag
                       <div className="ml-2">
                         {/* Only shows when name sort is asc */}
@@ -191,7 +191,7 @@ export default function MaterialTable({ filteredList, setFilteredList }) {
                         <svg onClick={() => handleTagSort()} className="cursor-pointer" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512"><path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z" /></svg> */}
                       </div>
                     </th>
-                    <th scope="col" className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                    <th scope="col" className="hidden md:table-cell px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
                     </th>
                   </tr>
                 </thead>
@@ -225,18 +225,18 @@ export default function MaterialTable({ filteredList, setFilteredList }) {
                           </div>
                         </div>
                       </td>
-                      <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                      <td className="hidden md:table-cell px-5 py-5 text-sm bg-white border-b border-gray-200">
                         <p className="text-gray-900 whitespace-no-wrap">
                           {file.format}
                         </p>
                       </td>
-                      <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                      <td className="hidden md:table-cell px-5 py-5 text-sm bg-white border-b border-gray-200">
                         <p className="text-gray-900 whitespace-no-wrap">
                           {/* {new Date(file.createdAt._seconds).toLocaleString("en-US")} */}
                           {formatDate(file.updatedAt || file.createdAt)}
                         </p>
                       </td>
-                      <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                      <td className="hidden md:table-cellpx-5 py-5 text-sm bg-white border-b border-gray-200">
                         <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
                           <span aria-hidden="true" className="absolute inset-0 bg-green-200 rounded-full opacity-50">
                           </span>
@@ -245,7 +245,7 @@ export default function MaterialTable({ filteredList, setFilteredList }) {
                           </span>
                         </span>
                       </td>
-                      <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                      <td className="hidden md:table-cell px-5 py-5 text-sm bg-white border-b border-gray-200">
                         <a href="#" className="text-indigo-600 hover:text-indigo-900">
                           Edit
                         </a>
