@@ -34,8 +34,9 @@ export default function SearchBar() {
             <div className="flex items-center">
               <div className="w-px h-6 bg-gray-300"></div>
             </div>
+            {/* Profile */}
               <a href="#" className="relative flex items-center">
-                <img alt="profil" src={ user?.photoURL ||"/images/profile.png"} className="ml-4 mr-2 object-cover rounded-full h-10 w-10 " />
+                <img onError={e => e.target.src="/images/profile.png"} alt="profil" src={ user?.photoURL ||"/images/profile.png"} className="ml-4 mr-2 object-cover rounded-full h-10 w-10 " />
                 <p>{user?.displayName || "Welcome"}</p>
               </a>
             </div>

@@ -19,7 +19,7 @@ export default function NavigationBar() {
       {/* <div className= {`relative w-20 text-hidden h-screen shadow-lg h-100vh`}> */}
         <div className="h-full flex flex-col bg-white dark:bg-gray-700">
           <div className="flex items-center justify-center pt-6">
-            <img className="w-14 h-14" src="/images/learnX4.png">
+            <img className={ showFullNav ? "w-16 h-16": "w-10 h-10"} src="/images/learnX4.png">
             </img>
           </div>
 
@@ -45,7 +45,7 @@ export default function NavigationBar() {
                     </svg>
                   </span>
                   <span className={`${showFullNav ? "block": "hidden"} mx-4 text-m font-normal`}>
-                    Material
+                    Materials
                   </span>
                 </Link>
               </div>

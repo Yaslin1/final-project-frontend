@@ -1,39 +1,44 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import MaterialModal from "./MaterialModal"
-import ContentCards from "./ContentCards";
+import MaterialModal from "./MaterialModal" //component import
+import ContentCards from "./ContentCards"; //component import
 
 export default function AgendaPage() {
-  const [agendaId, setAgendaId] = useState();
+  const [agendaId, setAgendaId] = useState(); //initial state value 
   const [agenda, setAgenda] = useState(
     [ // Big container
       [ // week 1
         [] // day 1
       ]
-    ])
-  const [currentWeek, setCurrentWeek] = useState(0);
+    ]) //initialize state using nested arrays
+  const [currentWeek, setCurrentWeek] = useState(0); //initial state value with inital value of 0
 
   useEffect(() => {
     const setup = async () => {
       try {
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/agendas`);
+        //fetching data from specified end point
 
         if (res.status === 404) {
           throw new Error()
         }
         const data = await res.json();
+        //parsing response as json
 
         if (!data.length) return
+        //no data then stop do not continue
 
-        setAgenda(JSON.parse(data[0].agenda));
-        setAgendaId(data[0].id)
+        setAgenda(JSON.parse(data[0].agenda)); //updating agenda with parse data
+        setAgendaId(data[0].id) //updating state with ID from data
 
-      } catch (err) {
+      } catch (err) { 
         alert(err.message);
+        //catches any errors in fetch and logs them.
       }
     }
     !agendaId && setup();
+    //agendaID not set it will call the setup function
 
   }, [])
 

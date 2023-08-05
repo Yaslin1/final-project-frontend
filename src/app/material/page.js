@@ -28,12 +28,12 @@ export default function MaterialPage() {
   // Anything you put in the dependency array will cause use effect to run again when the value changes.
 
   return (
-    <>
+    <div className="p-8">
       <MaterialBigCard //Giving the info below to Material Big Card and then the infoamation is recieved.
         fileList={fileList} //props passing information from the parent to the child.
         setFileList={setFile}
         setFilteredList={setFilteredList} />
       <MaterialTable filteredList={filteredList || fileList} setFilteredList={setFilteredList} />
-    </>
+    </div>
   )
 }

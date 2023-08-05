@@ -1,23 +1,30 @@
 "use client" // use clients is because we are using a hook. Rendered client side and cannot use hooks on servers.
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react"; 
+//useState when state changes react rerenders
+//useEffect runs when page loads or when something in depencies array changes
+//useContext allows to use value from anywhere in app
 import { AuthContext } from "../contexts/AuthContext";
 
-const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Upload modal component
-  const { user } = useContext(AuthContext);
-  const [showModal, setShowModal] = useState(false);
+const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Props from parent component. Upload modal component
+  const { user } = useContext(AuthContext); //get user info so it can user auth can be used throughout the component.
+  
+  const [showModal, setShowModal] = useState(false); 
   const [files, setFiles] = useState();
-  // controls dropdown with files
-  const [selectMaterial, setSelectMaterial] = useState(false);
+  const [selectMaterial, setSelectMaterial] = useState(false); 
+  //False is initial value Create and manage state variables. visibility of modals, managefile data and selection material.
 
   const [formData, setFormData] = useState({
     time: '',
     description: '',
     material: {},
   });
+  //Initializes a state variable with inital object. Stores user entered data 
 
-  const handleChange = (e) => { //on event
-    const { name, value } = e.target; // getting name and value  from the event
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+  //on event user input info in form. Extracts name and value and updates states.
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  //uses setFormData function to update the form which creates a new object that copies the previous data and updates the specific field that was changed.
   };
 
   const handleSubmit = async (e) => {
@@ -31,11 +38,12 @@ const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Upload
         uid: user.uid, //getting uid from the object in firebase auth
       }
 
-      const updatedAgenda = [...agenda]
+      const updatedAgenda = [...agenda] //copy of agenda array
       updatedAgenda[week][day].push(bodyRequest)
+      //Modifying agenda data with new info
 
       setAgenda(updatedAgenda)
-
+      //Updating the agenda state with modified data
 
 
       setFormData({
@@ -44,11 +52,19 @@ const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Upload
         material: {},
       })
 
+      //Resetting form field
+
       setShowModal();
+      //Closing modal
 
       if (!agendaId) {
+        //check to see if agenda is falsy
+         // If agendaId is falsy, it means we're creating a new agenda entry.
+  
+         // Send a POST request to the specified API endpoint to create a new agenda entry.
+         // The body of the request contains the updatedAgenda data as a JSON string.
         const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/agendas`, {
-          method: "POST",
+          method: "POST", //create new agenda item
           body: JSON.stringify({
             agenda: JSON.stringify(updatedAgenda)
           }), //
@@ -57,12 +73,12 @@ const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Upload
             "Authorization": user.stsTokenManager.accessToken //passing fire the firebase token in authorization header
           }
         })
-
+        //check to see if in success range and if not throw error  
         if (199 > res.status > 299) throw new error
 
       } else {
         const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/agendas/${agendaId}`, { //request  from api
-          method: "PATCH",
+          method: "PATCH", //update new agenda item
           body: JSON.stringify({
             agenda: JSON.stringify(updatedAgenda)
           }), //
@@ -74,34 +90,41 @@ const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Upload
         if (199 > res.status > 299) throw new error
       }
 
-
+      //catches any errors in fetch and logs them.
     } catch (err) {
       console.error(err)
     }
   };
 
   useEffect(() => {
-    const setup = async () => {
+    const setup = async () => { 
       try {
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/files`);
         const data = await res.json();
-        // sorts by name
+        //Fetching and retrieving file data from an API.
+        
+
         data.sort((a, b) => {
-          // lowercase so uppercase and lowercase are sorted equally
+
           const first = a.name.toLowerCase()
           const second = b.name.toLowerCase()
           if (first > second) return 1
           if (first < second) return -1
           return 0;
         });
+          //sorts by name. lowercase so uppercase and lowercase are sorted equally
+
         setFiles(data);
+         //Updates the "files" state with sorted list of files
       } catch (err) {
         alert(err.message);
+        //error if fetching error occurs
       }
     }
-
+    
     !files && setup();
+    //If there are no files, it fetches and organizes the file data using the "setup" function.
   }, [])
 
   return (
