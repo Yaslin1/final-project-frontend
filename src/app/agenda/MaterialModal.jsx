@@ -128,9 +128,9 @@ const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Props 
   }, [])
 
   return (
-    <>
-      <button onClick={() => setShowModal(true)} type="button" className="max-w-sm w-full text-white bg-gray-200 hover:bg-gray-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-        Add A Topic
+    <div className="pb-8">
+      <button onClick={() => setShowModal(true)} type="button" className="max-w-sm w-full bg-white text-zinc-600 border-dashed border-2 border-gray-300 hover:bg-gray-300 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+        + Add A Topic
       </button>
       {showModal &&
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
@@ -244,7 +244,7 @@ const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Props 
           </div>
         </div >
       }
-    </>
+    </div>
   );
 };
 

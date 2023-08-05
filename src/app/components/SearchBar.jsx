@@ -32,7 +32,8 @@ export default function SearchBar() {
             </div>
             <div className="relative flex items-center w-1/4 justify-end p-1 ml-5 mr-4 sm:mr-0 sm:right-auto">
             <div className="flex items-center">
-              <div className="w-px h-6 bg-gray-300"></div>
+              <div className="w-px h-6 bg-gray-300">
+              </div>
             </div>
             {/* Profile */}
               <a href="#" className="relative flex items-center">

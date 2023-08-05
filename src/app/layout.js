@@ -13,14 +13,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-y-hidden">
       <body className={inter.className}>
         <AuthContext>
         <div className='flex'>
           <aside>
           <NavigationBar/>
         </aside>
-        <main className="overflow-y-scroll w-full max-h-screen">
+        <main className="flex flex-col overflow-y-scroll w-full max-h-screen">
           <SearchBar/>
           {children}
         </main>
