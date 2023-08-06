@@ -35,35 +35,37 @@ export default function LoginForm() {
     }
 
     return (
-        <section className="bg-white p-6 rounded-lg max-w-[420px] w-full items-center">
-            <form onSubmit={handleLogin} className="flex flex-col items-start justify-around min-h-[30vh]">
+        <section className="m-8 p-6 bg-white border border-gray-100 shadow-sm rounded-lg w-[500px] flex flex-col items-center">
+            <form onSubmit={handleLogin} className="flex w-[420px] flex-col items-start justify-around min-h-[30vh]">
                 <label htmlFor="email" className="flex flex-col w-full">
                     <span className="text-zinc-900 text-left"> Email </span>
-                    <input required type="email" name="email" className="rounded-lg border-transparent border
-                     border-violet-500 py-2 px-4 bg-zinc-50 text-zinc-700 placeholder-zinc-400 
-                     text-base focus:ring-2 focus:ring-violet-600 focus:border-transparent"/>
+                    <input required type="email" name="email" className="rounded-lg border
+                     border-gray-300 shadow-sm py-2 px-4 text-zinc-700 placeholder-zinc-400 
+                     text-base "/>
                 </label>
                 <label htmlFor="password" className="flex flex-col w-full">
                     <span className="text-zinc-900 text-left">Password</span>
-                    <input required type="password" name="password" className="rounded-lg border-transparent border
-                     border-violet-500 py-2 px-4 bg-zinc-50 text-zinc-700 placeholder-zinc-400 
-                     text-base focus:ring-2 focus:ring-violet-600 focus:border-transparent"/>
+                    <input required type="password" name="password" className="rounded-lg border
+                     border-gray-300 shadow-sm py-2 px-4 text-zinc-700 placeholder-zinc-400 
+                     text-base "/>
                 </label>
                 <input type="submit" value="Login" className="bg-violet-700 text-white py-2 px-8 
                 rounded-lg shadow-lg transition duration-300 hover:bg-violet-300 hover:shadow-sm 
                 cursor-pointer w-full" />
             </form>
-            <div class="inline-flex items-center justify-center w-full">
-                <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
-                    <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">Or continue with</span>
-                <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
+            <div class="inline-flex items-center justify-center w-[420px]">
+                <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+                <span class="px-3 font-medium text-gray-900 bg-white left-1/2 dark:text-white dark:bg-gray-900 whitespace-nowrap">Or continue with</span>
+                <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
             </div>
-            <button onClick={handleGoogle} className="bg-sky-300 text-white py-2 px-8 
+            <button onClick={handleGoogle} className="bg-blue-500 flex items-center text-white py-2 px-8 
                 rounded-lg shadow-lg transition duration-300 hover:bg-violet-300 hover:shadow-sm 
-                cursor-pointer">Google</button>
-            <svg className="fill-gray-500" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 488 512">
-                <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
-            </svg>
+                cursor-pointer relative mx-auto">
+                <svg className="fill-white mr-2" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 488 512">
+                    <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                </svg>
+                Google
+            </button>
             <br />
         </section>
     )

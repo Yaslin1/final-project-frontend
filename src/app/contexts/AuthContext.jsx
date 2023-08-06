@@ -33,15 +33,18 @@ export default function AuthContextComponent({ children }) { //children between 
     <AuthContext.Provider value={{ user, setUser }} > {/* Provider gives values to the rest of the children */}
       {
         (isReady && !user && pathname !== '/signup')
-          ? <main className="min-h-screen text-orange-50 px-4 py-8 text-center">
-            <h1 className="text-gray-900 font-semibold text-2xl">Sign in to your account</h1>
+          ? <main className="bg-zinc-100  shadow-sm min-h-screen text-orange-50 px-4 py-8 text-center">
+            <img alt="ecommerce" className="mix-blend-darken mx-auto md:w-70 md:h-20" src="/images/Logo2.png" />
+            <h1 className="text-gray-900 font-semibold text-2xl mt-8">Sign in to your account</h1>
+            <div className="flex flex-col items-center">
             <LoginForm />
             <p className="mt-4 text-gray-600">Not a user? <Link href="/signup" className="text-violet-500 font-semibold">Sign Up</Link>
             </p>
+          </div>
           </main>
           : isReady && <>{children}</>
-      }
-    </AuthContext.Provider>
+}
+    </AuthContext.Provider >
   )
 }
 
