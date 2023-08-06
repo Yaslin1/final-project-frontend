@@ -1,10 +1,11 @@
 "use client"
 // use clients is because we are using a hook. Rendered client side and cannot use hooks on servers.
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { AuthContext } from "../contexts/AuthContext"
 
 export default function SearchBar() {
-  const { user } = useContext(AuthContext); //Getting set user from auth context
+  const { user, setUser } = useContext(AuthContext); //Getting set user from auth context
+  const [logoutMenu, setLogoutMenu] = useState(false)
 
   return (
     <>
@@ -31,15 +32,21 @@ export default function SearchBar() {
               </div>
             </div>
             <div className="relative flex items-center w-1/4 justify-end p-1 ml-5 mr-4 sm:mr-0 sm:right-auto">
-            <div className="flex items-center">
-              <div className="w-px h-6 bg-gray-300">
+              <div className="flex items-center">
+                <div className="w-px h-6 bg-gray-300">
+                </div>
               </div>
-            </div>
-            {/* Profile */}
-              <a href="#" className="relative flex items-center">
-                <img onError={e => e.target.src="/images/profile.png"} alt="profil" src={ user?.photoURL ||"/images/profile.png"} className="ml-4 mr-2 object-cover rounded-full h-10 w-10 " />
+              {/* Profile */}
+              <span className="relative flex items-center cursor-pointer" onClick={() => setLogoutMenu(prev => !prev)}>
+                <img onError={e => e.target.src = "/images/profile.png"} alt="profil" src={user?.photoURL || "/images/profile.png"} className="ml-4 mr-2 object-cover rounded-full h-10 w-10 " />
                 <p>{user?.displayName || "Welcome"}</p>
-              </a>
+              </span>
+              {
+                logoutMenu &&
+                <div className="flex hover:text-blue-800 justify-center w-[150px] absolute border  top-12 left-6 whitespace-nowrap bg-white cursor-pointer py-4" onClick={()=> setUser()} >
+                  Logout
+                </div>
+              }
             </div>
           </div>
         </div>

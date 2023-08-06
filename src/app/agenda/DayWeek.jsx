@@ -64,7 +64,7 @@ export default function AgendaPage() {
               <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                 {agenda?.map((week, i) => (
                   <li key={`add-week-${i}`} className="mr-2" role="presentation">
-                    <button onClick={() => setCurrentWeek(i)} className={`${currentWeek === i && "border-blue-600" } inline-block py-4 px-2 mx-1 border-b-2 rounded-t-lg`} id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Week {i + 1} </button>
+                    <button onClick={() => setCurrentWeek(i)} className={`${currentWeek === i && "border-sky-400 border-b-4" } inline-block py-4 px-2 mx-1 rounded-t-lg`} id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Week {i + 1} </button>
                   </li>
                 ))}
               </ul>
@@ -72,7 +72,7 @@ export default function AgendaPage() {
           </div>
         </section>
       </div>
-      <section className="flex overflow-y-scroll h-full bg-zinc-100 pt-4">
+      <section className="flex overflow-y-scroll h-full bg-zinc-100 pt-10">
         {/* width 33%, min width some pixels, overflow-y scroll */}
         {
           agenda?.[currentWeek]?.map((day, i) => (

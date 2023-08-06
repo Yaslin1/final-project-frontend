@@ -1,7 +1,5 @@
-import NavigationBar from './components/NavigationBar'
-import SearchBar from './components/SearchBar'
-import AuthContext from './contexts/AuthContext'
-import './globals.css'
+import AuthContext from '@/app/contexts/AuthContext'
+import '@/app/globals.css'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -16,15 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className="overflow-y-hidden">
       <body className={inter.className}>
         <AuthContext>
-        <div className='flex'>
-          <aside>
-          <NavigationBar/>
-        </aside>
-        <main className="flex flex-col overflow-y-scroll w-full max-h-screen">
-          <SearchBar/>
           {children}
-        </main>
-        </div>
         </AuthContext>
       </body>
     </html>
