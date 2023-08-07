@@ -1,9 +1,8 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import MaterialModal from "./MaterialModal" //component import
-import ContentCards from "./ContentCards"; //component import
+import ContentCards from "@/app/trainee-view/[agenda]/PublicContentCards"; //component import
 
-export default function AgendaPage() {
+export default function AgendaPage({ agendaId: _agendaId }) {
   const [agendaId, setAgendaId] = useState(); //initial state value 
   const [agenda, setAgenda] = useState(
     [ // Big container
@@ -12,11 +11,6 @@ export default function AgendaPage() {
       ]
     ]) //initialize state using nested arrays
   const [currentWeek, setCurrentWeek] = useState(0); //initial state value with inital value of 0
-
-  const copyShareableLink = () => {
-    navigator.clipboard.writeText(`https://lms-web-yc.web.app/trainee-vew/${agendaId}`)
-    alert("Link has been copied to clipboard.")
-  }
 
   useEffect(() => {
     const setup = async () => {
@@ -34,6 +28,8 @@ export default function AgendaPage() {
         if (!data.length) return
         //no data then stop do not continue
 
+        if(_agendaId !== data[0].id) return
+
         setAgenda(JSON.parse(data[0].agenda)); //updating agenda with parse data
         setAgendaId(data[0].id) //updating state with ID from data
 
@@ -49,26 +45,13 @@ export default function AgendaPage() {
 
   return (
     <div className="py-2 overflow-x-hidden flex flex-col flex-grow h-screen">
-      <div className="px-2 md:px-8">
+      <div className="px-2 md:px-4">
         <div className="flex w-full justify-between py-8">
-          <h1 className="text-2xl font-semibold">Agenda </h1>      <button onClick={copyShareableLink} type="button" className=" py-2 px-4 flex justify-center items-center  bg-zinc-200 hover:bg-zinc-300 focus:ring-violet-500 focus:ring-offset-zinc-200 text-zinc w-2rem transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" className="mr-1">
-            <path d="M352 320c-22.608 0-43.387 7.819-59.79 20.895l-102.486-64.054a96.551 96.551 0 0 0 0-41.683l102.486-64.054C308.613 184.181 329.392 192 352 192c53.019 0 96-42.981 96-96S405.019 0 352 0s-96 42.981-96 96c0 7.158.79 14.13 2.276 20.841L155.79 180.895C139.387 167.819 118.608 160 96 160c-53.019 0-96 42.981-96 96s42.981 96 96 96c22.608 0 43.387-7.819 59.79-20.895l102.486 64.054A96.301 96.301 0 0 0 256 416c0 53.019 42.981 96 96 96s96-42.981 96-96-42.981-96-96-96z" /></svg>
-            Share
-          </button>
+          <h1 className="text-2xl font-semibold">Trainee Agenda </h1>
         </div >
         {/* Week Plus Sign */}
         <section className="flex w-full justify-between items-center ">
-          <svg className="cursor-pointer w-9 h-9 stroke-slate-500 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            onClick={() => setAgenda([...agenda, [[]]])}>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <div className="flex items-center">
-            <div className="w-px h-8 bg-gray-300">
-            </div>
-          </div>
-          {/* Add Weeks */}
-          <div className="flex w-full justify-between px-8">
+          <div className="flex w-full justify-between pr-8">
             <div className="border-b border-gray-200 dark:border-gray-700">
               <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                 {agenda?.map((week, i) => (
@@ -97,25 +80,9 @@ export default function AgendaPage() {
 
                 </div>
                 {/* Your page content here */}
-                <MaterialModal agenda={agenda} agendaId={agendaId} setAgenda={setAgenda} day={i} week={currentWeek} />
               </div>
             </React.Fragment>
           ))
-        }
-        {
-          agenda?.[currentWeek].length < 7 &&
-          <div className="flex flex-col w-[250px] min-w-[250px] md:w-[350px] md:min-w-[350px] p-2 md:p-4">
-            <button
-              onClick={() => {
-                const updated = [...agenda]
-                if (updated[currentWeek].length === 7) return
-                updated[currentWeek] = [...agenda[currentWeek], []]
-                setAgenda(updated)
-              }}
-              className="max-w-sm w-full mt-[56px] text-white  text-zinc-600 bg-white border-dashed border-2 border-gray-300 hover:bg-violet-200 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-violet-600 dark:hover:bg-violet-700 focus:outline-none dark:focus:ring-violet-800">
-              + Add A Day
-            </button>
-          </div>
         }
       </section>
 

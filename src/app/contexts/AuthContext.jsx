@@ -32,7 +32,7 @@ export default function AuthContextComponent({ children }) { //children between 
   return (
     <AuthContext.Provider value={{ user, setUser }} > {/* Provider gives values to the rest of the children */}
       {
-        (isReady && !user && pathname !== '/signup')
+        (isReady && !user && pathname !== '/signup' && !pathname.includes("/trainee-view"))
           ? <main className="bg-zinc-100  shadow-sm min-h-screen text-orange-50 px-4 py-8 text-center">
             <img alt="ecommerce" className="mix-blend-darken mx-auto md:w-70 md:h-20" src="/images/Logo2.png" />
             <h1 className="text-gray-900 font-semibold text-2xl mt-8">Sign in to your account</h1>
