@@ -54,9 +54,9 @@ export default function LoginForm() {
                 cursor-pointer w-full" />
             </form>
             <div class="inline-flex items-center justify-center w-[420px]">
-                <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
-                <span class="px-3 font-medium text-gray-900 bg-white left-1/2 dark:text-white dark:bg-gray-900 whitespace-nowrap">Or continue with</span>
-                <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+                <hr class="w-64 h-px my-8 bg-gray-200 border-0" />
+                <span class="px-3 font-medium text-gray-900 bg-white left-1/2 whitespace-nowrap">Or continue with</span>
+                <hr class="w-64 h-px my-8 bg-gray-200 border-0" />
             </div>
             <button onClick={handleGoogle} className="bg-blue-500 flex items-center text-white py-2 px-8 
                 rounded-lg shadow-lg transition duration-300 hover:bg-violet-300 hover:shadow-sm 

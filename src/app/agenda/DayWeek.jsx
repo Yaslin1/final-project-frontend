@@ -74,7 +74,7 @@ export default function AgendaPage() {
           </div>
           {/* Add Weeks */}
           <div className="flex w-full justify-between px-8">
-            <div className="border-b border-gray-200 dark:border-gray-700">
+            <div className="border-b border-gray-200 ">
               <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                 {agenda?.map((week, i) => (
                   <li key={`add-week-${i}`} className="mr-2" role="presentation">
@@ -117,7 +117,7 @@ export default function AgendaPage() {
                 updated[currentWeek] = [...agenda[currentWeek], []]
                 setAgenda(updated)
               }}
-              className="max-w-sm w-full mt-[56px] text-white  text-zinc-600 bg-white border-dashed border-2 border-gray-300 hover:bg-violet-200 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-violet-600 dark:hover:bg-violet-700 focus:outline-none dark:focus:ring-violet-800">
+              className="max-w-sm w-full mt-[56px] text-white  text-zinc-600 bg-white border-dashed border-2 border-gray-300 hover:bg-violet-200 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none ">
               + Add A Day
             </button>
           </div>

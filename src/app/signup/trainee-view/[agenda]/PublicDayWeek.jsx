@@ -52,7 +52,7 @@ export default function AgendaPage({ agendaId: _agendaId }) {
         {/* Week Plus Sign */}
         <section className="flex w-full justify-between items-center ">
           <div className="flex w-full justify-between pr-8">
-            <div className="border-b border-gray-200 dark:border-gray-700">
+            <div className="border-b border-gray-200">
               <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                 {agenda?.map((week, i) => (
                   <li key={`add-week-${i}`} className="mr-2" role="presentation">
