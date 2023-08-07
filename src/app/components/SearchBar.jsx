@@ -23,7 +23,7 @@ export default function SearchBar() {
                 </div>
                 <svg className="absolute left-0 z-20 hidden w-4 h-4 ml-4 text-gray-500 pointer-events-none fill-current group-hover:text-gray-400 sm:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z">
-                  </path>
+                  </path> 
                 </svg>
                 <input type="text" className="block w-full py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 ring-opacity-90 bg-gray-100 dark:bg-gray-800 text-gray-400 aa-input" placeholder="Search" />
                 <div className="absolute right-0 hidden h-auto px-2 py-1 mr-2 text-xs text-gray-400 border border-gray-300 rounded-2xl md:block">
@@ -43,7 +43,7 @@ export default function SearchBar() {
               </span>
               {
                 logoutMenu &&
-                <div className="flex hover:text-blue-800 justify-center w-[150px] absolute border  top-12 left-6 whitespace-nowrap bg-white cursor-pointer py-4" onClick={()=> setUser()} >
+                <div className="flex hover:text-blue-800 justify-center w-[150px] absolute border  top-14 right-0 whitespace-nowrap bg-white cursor-pointer py-4" onClick={()=> setUser()} >
                   Logout
                 </div>
               }

@@ -19,7 +19,7 @@ export default function NavigationBar() {
       {/* <div className= {`relative w-20 text-hidden h-screen shadow-lg h-100vh`}> */}
         <div className="h-full flex flex-col bg-white dark:bg-gray-700">
           <div className="flex items-center justify-center pt-6">
-            <img className={ showFullNav ? "w-46 h-16": "w-10 h-10"} src={showFullNav ? "/images/logo2.png" : "/images/logo3.png"}>
+            <img className={ showFullNav ? "w-46 h-16 mix-blend-color-burn": "w-10 h-10 mix-blend-color-burn"} src={showFullNav ? "/images/Logo2.png" : "/images/Logo3.png"}>
             </img>
           </div>
 

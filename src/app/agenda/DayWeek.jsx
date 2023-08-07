@@ -13,9 +13,13 @@ export default function AgendaPage() {
     ]) //initialize state using nested arrays
   const [currentWeek, setCurrentWeek] = useState(0); //initial state value with inital value of 0
 
-  const copyShareableLink = () => {
-    navigator.clipboard.writeText(`https://lms-web-yc.web.app/trainee-vew/${agendaId}`)
-    alert("Link has been copied to clipboard.")
+  const copyShareableLink = async () => {
+    try{
+      await navigator.clipboard.writeText(`https://lms-web-yc.web.app/trainee-view/${agendaId}`)
+      alert("Link has been copied to clipboard.")
+    } catch(err) {
+      console.error(err)
+    }
   }
 
   useEffect(() => {
@@ -51,9 +55,10 @@ export default function AgendaPage() {
     <div className="py-2 overflow-x-hidden flex flex-col flex-grow h-screen">
       <div className="px-2 md:px-8">
         <div className="flex w-full justify-between py-8">
-          <h1 className="text-2xl font-semibold">Agenda </h1>      <button onClick={copyShareableLink} type="button" className=" py-2 px-4 flex justify-center items-center  bg-zinc-200 hover:bg-zinc-300 focus:ring-violet-500 focus:ring-offset-zinc-200 text-zinc w-2rem transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+          <h1 className="text-2xl font-semibold">Agenda </h1>
+          <button onClick={copyShareableLink} type="button" className=" py-2 px-4 flex justify-center items-center  bg-zinc-200 hover:bg-zinc-300 focus:ring-violet-500 focus:ring-offset-zinc-200 text-zinc w-2rem transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" className="mr-1">
-            <path d="M352 320c-22.608 0-43.387 7.819-59.79 20.895l-102.486-64.054a96.551 96.551 0 0 0 0-41.683l102.486-64.054C308.613 184.181 329.392 192 352 192c53.019 0 96-42.981 96-96S405.019 0 352 0s-96 42.981-96 96c0 7.158.79 14.13 2.276 20.841L155.79 180.895C139.387 167.819 118.608 160 96 160c-53.019 0-96 42.981-96 96s42.981 96 96 96c22.608 0 43.387-7.819 59.79-20.895l102.486 64.054A96.301 96.301 0 0 0 256 416c0 53.019 42.981 96 96 96s96-42.981 96-96-42.981-96-96-96z" /></svg>
+              <path d="M352 320c-22.608 0-43.387 7.819-59.79 20.895l-102.486-64.054a96.551 96.551 0 0 0 0-41.683l102.486-64.054C308.613 184.181 329.392 192 352 192c53.019 0 96-42.981 96-96S405.019 0 352 0s-96 42.981-96 96c0 7.158.79 14.13 2.276 20.841L155.79 180.895C139.387 167.819 118.608 160 96 160c-53.019 0-96 42.981-96 96s42.981 96 96 96c22.608 0 43.387-7.819 59.79-20.895l102.486 64.054A96.301 96.301 0 0 0 256 416c0 53.019 42.981 96 96 96s96-42.981 96-96-42.981-96-96-96z" /></svg>
             Share
           </button>
         </div >
