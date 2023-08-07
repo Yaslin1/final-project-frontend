@@ -84,7 +84,7 @@ const UploadModal = ({updateList}) => { //Upload modal component
 
   return (
     <>
-      <button onClick={() => setShowModal(true)} type="button" className=" py-2 px-4 flex justify-center items-center  bg-zinc-200 hover:bg-zinc-300 focus:ring-zinc-500 focus:ring-offset-zinc-200 text-zinc w-2rem transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+      <button onClick={() => setShowModal(true)} type="button" className=" py-2 px-4 flex justify-center items-center  bg-zinc-200 hover:bg-zinc-300 focus:ring-violet-500 focus:ring-offset-zinc-200 text-zinc w-2rem transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
         <svg width="20" height="20" fill="currentColor" className="mr-2" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
           <path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z">
           </path>
@@ -112,7 +112,7 @@ const UploadModal = ({updateList}) => { //Upload modal component
                           <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                           </svg>
-                          <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+                          <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
                           <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                         </div>
                         <input onChange={(e) => { setFiles(e.target.files) }} id="dropzone-file" type="file" className="hidden" />
@@ -156,12 +156,12 @@ const UploadModal = ({updateList}) => { //Upload modal component
               <div className="flex w-full justify-around">
               <button
                   onClick={() => setShowModal(false)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
+                  className="bg-violet-700 text-white px-4 py-2 rounded mt-4">
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
+                  className="bg-violet-700 text-white px-4 py-2 rounded mt-4">
                   Submit
                 </button>
                

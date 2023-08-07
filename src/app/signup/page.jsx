@@ -8,7 +8,7 @@ export default function SignUpPage () {
             <h1 className="text-gray-900 font-semibold text-2xl mt-8">Create a LearnX account</h1>
       <div className="flex flex-col items-center">
             <SignUpForm />
-            <p className="mt-4 text-gray-600">Already a user? <Link href="/" className="text-violet-500 font-semibold">Sign In</Link>
+            <p className="mt-4 text-gray-600">Already a user? <Link href="/" className="text-violet-700 font-semibold">Sign In</Link>
             </p>
             </div>
           </main>

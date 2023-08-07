@@ -64,7 +64,7 @@ export default function AgendaPage() {
               <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                 {agenda?.map((week, i) => (
                   <li key={`add-week-${i}`} className="mr-2" role="presentation">
-                    <button onClick={() => setCurrentWeek(i)} className={`${currentWeek === i && "border-sky-400 border-b-4" } inline-block py-4 px-2 mx-1 rounded-t-lg`} id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Week {i + 1} </button>
+                    <button onClick={() => setCurrentWeek(i)} className={`${currentWeek === i && "border-violet-700 border-b-4" } inline-block py-4 px-2 mx-1 rounded-t-lg`} id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Week {i + 1} </button>
                   </li>
                 ))}
               </ul>
@@ -103,7 +103,7 @@ export default function AgendaPage() {
                 updated[currentWeek] = [...agenda[currentWeek], []]
                 setAgenda(updated)
               }}
-              className="max-w-sm w-full mt-[56px] text-white  text-zinc-600 bg-white border-dashed border-2 border-gray-300 hover:bg-gray-300 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+              className="max-w-sm w-full mt-[56px] text-white  text-zinc-600 bg-white border-dashed border-2 border-gray-300 hover:bg-violet-200 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-violet-600 dark:hover:bg-violet-700 focus:outline-none dark:focus:ring-violet-800">
               + Add A Day
             </button>
           </div>

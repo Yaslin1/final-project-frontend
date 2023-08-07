@@ -149,7 +149,7 @@ export default function MaterialTable({ filteredList, setFilteredList }) { //Pro
             </h2>
             <div className="text-end">
               <form className="flex flex-col justify-center md:w-3/4 md:max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0">
-                <button onClick={() => setFilteredList()} className="whitespace-nowrap flex-shrink-0 px-4 py-2 text-base font-semibold text-zinc-800 bg-zinc-200 rounded-lg shadow-md hover:bg-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-200">
+                <button onClick={() => setFilteredList()} className="whitespace-nowrap flex-shrink-0 px-4 py-2 text-base font-semibold text-zinc-800 bg-zinc-200 rounded-lg shadow-md hover:bg-zinc-300 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-zinc-200">
                   Show All
                 </button>
               </form>
@@ -240,8 +240,8 @@ export default function MaterialTable({ filteredList, setFilteredList }) { //Pro
                         </p>
                       </td>
                       <td className="hidden md:table-cell px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
-                          <span aria-hidden="true" className="absolute inset-0 bg-green-200 rounded-full opacity-50">
+                        <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-violet-900">
+                          <span aria-hidden="true" className="absolute inset-0 bg-violet-200 rounded-full opacity-50">
                           </span>
                           <span className="relative">
                             {file.tag}
@@ -249,7 +249,7 @@ export default function MaterialTable({ filteredList, setFilteredList }) { //Pro
                         </span>
                       </td>
                       <td className="hidden md:table-cell px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                        <a href="#" className="text-violet-900 hover:text-violet-600">
                           Edit
                         </a>
                       </td>
@@ -269,7 +269,7 @@ export default function MaterialTable({ filteredList, setFilteredList }) { //Pro
                     </svg>
                   </button>
                   {Array.from({ length: Math.ceil(filteredList.length / itemsPerPage) }, (_, i) => i + 1).map((page, i) => (
-                    <button key={`page-${page}-${i}`} type="button" className={`${currentPage === page ? "bg-gray-100" : "bg-white"} w-full px-4 py-2 text-base text-indigo-500 border-t border-b hover:bg-gray-100`}
+                    <button key={`page-${page}-${i}`} type="button" className={`${currentPage === page ? "bg-gray-100" : "bg-white"} w-full px-4 py-2 text-base text-violet-500 border-t border-b hover:bg-gray-100`}
                       onClick={() => setCurrentPage(page)}>
                       {page}
                     </button>

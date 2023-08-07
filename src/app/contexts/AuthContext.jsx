@@ -38,7 +38,7 @@ export default function AuthContextComponent({ children }) { //children between 
             <h1 className="text-gray-900 font-semibold text-2xl mt-8">Sign in to your account</h1>
             <div className="flex flex-col items-center">
             <LoginForm />
-            <p className="mt-4 text-gray-600">Not a user? <Link href="/signup" className="text-violet-500 font-semibold">Sign Up</Link>
+            <p className="mt-4 text-gray-600">Not a user? <Link href="/signup" className="text-violet-700 font-semibold">Sign Up</Link>
             </p>
           </div>
           </main>
