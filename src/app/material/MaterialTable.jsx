@@ -148,11 +148,12 @@ export default function MaterialTable({ filteredList, setFilteredList }) { //Pro
               All Files
             </h2>
             <div className="text-end">
-              <form className="flex flex-col justify-center md:w-3/4 md:max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0">
-                <button onClick={() => setFilteredList()} className="whitespace-nowrap flex-shrink-0 px-4 py-2 text-base font-semibold text-zinc-800 bg-zinc-200 rounded-lg shadow-md hover:bg-zinc-300 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-zinc-200">
+              <div className="flex flex-col justify-center md:w-full md:max-w-sm space-y-3 md:flex-row  md:space-x-3 md:space-y-0">
+                <button onClick={() => setFilteredList()}
+                  className="whitespace-nowrap flex-shrink-0 px-4 py-2 text-base font-semibold text-zinc-800 bg-zinc-200 rounded-lg shadow-md hover:bg-zinc-300 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-zinc-200">
                   Show All
                 </button>
-              </form>
+              </div>
             </div>
           </div>
           <div className="py-4 overflow-x-auto">
