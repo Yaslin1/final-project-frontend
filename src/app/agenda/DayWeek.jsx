@@ -1,9 +1,11 @@
 "use client"
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
+import { AuthContext } from '@/app/contexts/AuthContext'
 import MaterialModal from "./MaterialModal" //component import
 import ContentCards from "./ContentCards"; //component import
 
 export default function AgendaPage() {
+  const {user} = useContext(AuthContext);
   const [agendaId, setAgendaId] = useState(); //initial state value 
   const [agenda, setAgenda] = useState(
     [ // Big container
@@ -14,12 +16,43 @@ export default function AgendaPage() {
   const [currentWeek, setCurrentWeek] = useState(0); //initial state value with inital value of 0
 
   const copyShareableLink = async () => {
-    try{
+    try {
       await navigator.clipboard.writeText(`https://lms-web-yc.web.app/trainee-view/${agendaId}`)
       alert("Link has been copied to clipboard.")
-    } catch(err) {
+    } catch (err) {
       console.error(err)
     }
+  }
+
+  const handleDelete = async (item) => {
+    const confirmation = confirm("Are you sure you want to delete "+item.topic);
+    if (!confirmation) return;
+
+    const newDay = agenda[currentWeek][item.dayIndex];
+    newDay.splice(item.itemIndex, 1);
+    const newAgenda = [...agenda];
+    newAgenda[currentWeek][item.dayIndex] = newDay;
+
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/agendas/${agendaId}`, { //request  from api
+        method: "PATCH", //update new agenda item
+        body: JSON.stringify({
+          agenda: JSON.stringify(newAgenda)
+        }), //
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": user.stsTokenManager.accessToken //passing fire the firebase token in authorization header
+        }
+      })
+      if (199 > res.status > 299) throw new error
+
+      setAgenda(JSON.parse(JSON.stringify(newAgenda)));
+
+      //catches any errors in fetch and logs them.
+    } catch (err) {
+      console.error(err)
+    }
+
   }
 
   useEffect(() => {
@@ -95,8 +128,8 @@ export default function AgendaPage() {
                 <h2 className="text-xl font-semibold">Day {i + 1}</h2>
                 <div className="pt-8">
                   {
-                    day?.map((item, i) => (
-                      <ContentCards key={`material-card-${i}`} item={item} />
+                    day?.map((item, j) => (
+                      <ContentCards key={`material-card-${j}`} item={{ ...item, dayIndex: i, itemIndex: j }} handleDelete={handleDelete} />
                     ))
                   }
 
