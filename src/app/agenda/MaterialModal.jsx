@@ -42,6 +42,8 @@ const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Props 
       updatedAgenda[week][day].push(bodyRequest)
       //Modifying agenda data with new info
 
+      return alert("Disabled for Demo")
+      
       setAgenda(updatedAgenda)
       //Updating the agenda state with modified data
 
@@ -57,38 +59,38 @@ const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Props 
       setShowModal();
       //Closing modal
 
-      if (!agendaId) {
+      // if (!agendaId) {
         //check to see if agenda is falsy
          // If agendaId is falsy, it means we're creating a new agenda entry.
   
          // Send a POST request to the specified API endpoint to create a new agenda entry.
          // The body of the request contains the updatedAgenda data as a JSON string.
-        const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/agendas`, {
-          method: "POST", //create new agenda item
-          body: JSON.stringify({
-            agenda: JSON.stringify(updatedAgenda)
-          }), //
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": user.stsTokenManager.accessToken //passing fire the firebase token in authorization header
-          }
-        })
-        //check to see if in success range and if not throw error  
-        if (199 > res.status > 299) throw new error
+      //   const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/agendas`, {
+      //     method: "POST", //create new agenda item
+      //     body: JSON.stringify({
+      //       agenda: JSON.stringify(updatedAgenda)
+      //     }), //
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       "Authorization": user.stsTokenManager.accessToken //passing fire the firebase token in authorization header
+      //     }
+      //   })
+      //   //check to see if in success range and if not throw error  
+      //   if (199 > res.status > 299) throw new error
 
-      } else {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/agendas/${agendaId}`, { //request  from api
-          method: "PATCH", //update new agenda item
-          body: JSON.stringify({
-            agenda: JSON.stringify(updatedAgenda)
-          }), //
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": user.stsTokenManager.accessToken //passing fire the firebase token in authorization header
-          }
-        })
-        if (199 > res.status > 299) throw new error
-      }
+      // } else {
+      //   const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/agendas/${agendaId}`, { //request  from api
+      //     method: "PATCH", //update new agenda item
+      //     body: JSON.stringify({
+      //       agenda: JSON.stringify(updatedAgenda)
+      //     }), //
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       "Authorization": user.stsTokenManager.accessToken //passing fire the firebase token in authorization header
+      //     }
+      //   })
+      //   if (199 > res.status > 299) throw new error
+      // }
 
       //catches any errors in fetch and logs them.
     } catch (err) {
@@ -145,7 +147,7 @@ const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Props 
                   value={formData.topic || ''}
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2"
-                  required
+                  // required
                 />
               </label>
               <label className="block mb-2 mt-4">
@@ -156,7 +158,7 @@ const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Props 
                   value={formData.time || ''}
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2"
-                  required
+                  // required
                 />
               </label>
               <label className="block mb-2 mt-4">
@@ -167,7 +169,7 @@ const MaterialModal = ({ agenda, agendaId, setAgenda, week, day }) => { //Props 
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2 resize-none"
                   rows="4"
-                  required
+                  // required
                 />
               </label>
               <label className="block mb-2 mt-4">

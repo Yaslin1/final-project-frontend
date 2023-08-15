@@ -31,6 +31,8 @@ const UploadModal = ({updateList}) => { //Upload modal component
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    return alert("Disabled for Demo")
     // Handle form submission here (e.g., send data to the server)
     // Close the modal after form submission
 
@@ -46,14 +48,14 @@ const UploadModal = ({updateList}) => { //Upload modal component
         type:typeInfo[0], //value will be image or file
         format //value will be format such as pdf or png etc.
       }
-      const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/files`, { //request  from api
-        method: "POST",
-        body: JSON.stringify(bodyRequest), //
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": user.stsTokenManager.accessToken //passing fire the firebase token in authorization header
-        }
-      })
+      // const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/files`, { //request  from api
+      //   method: "POST",
+      //   body: JSON.stringify(bodyRequest), //
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     "Authorization": user.stsTokenManager.accessToken //passing fire the firebase token in authorization header
+      //   }
+      // })
 
       const data = await res.json()
       updateList(bodyRequest)
@@ -95,7 +97,9 @@ const UploadModal = ({updateList}) => { //Upload modal component
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-md shadow-lg  max-w-[450px] w-11/12">
             <h2 className="text-xl font-semibold mb-4">Upload Files</h2>
-            <form onSubmit={handleSubmit}>
+            <form 
+            onSubmit={handleSubmit}
+            >
               <div>
                 {/* <p>Drag and drop your files here</p> */}
                 {/* <img className="object-center w-28 h-28 block" src="/images/cloudicon2.png"></img> */}
@@ -128,7 +132,7 @@ const UploadModal = ({updateList}) => { //Upload modal component
                   value={formData.name}
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2"
-                required
+                // required
                 />
               </label>
               <label className="block mb-2 mt-4">
@@ -139,7 +143,7 @@ const UploadModal = ({updateList}) => { //Upload modal component
                   value={formData.tag}
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2"
-                required
+                // required
                 />
               </label>
               <label className="block mb-2 mt-4">
@@ -150,7 +154,7 @@ const UploadModal = ({updateList}) => { //Upload modal component
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2 resize-none"
                   rows="4"
-                required
+                // required
                 />
               </label>
               <div className="flex w-full justify-around">
