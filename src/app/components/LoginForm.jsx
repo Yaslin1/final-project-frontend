@@ -6,7 +6,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { AuthContext } from "@/app/contexts/AuthContext"
 
-const app = initializeApp(creds); //connecting to firebase using firebaseConfig
+const app = initializeApp(creds, "other"); //connecting to firebase using firebaseConfig
 const auth = getAuth(app); //getting authorization client using the app connection I created
 
 export default function LoginForm() {

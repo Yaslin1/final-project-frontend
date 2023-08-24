@@ -6,14 +6,14 @@ import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWith
 import { AuthContext } from "../contexts/AuthContext";
 import { useRouter } from "next/navigation";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBCxIyAShmt2H9GFCic4oUj5b53gTEwMSw",
-    authDomain: "chekov-yc.firebaseapp.com",
-    projectId: "chekov-yc",
-    storageBucket: "chekov-yc.appspot.com",
-    messagingSenderId: "861407056407",
-    appId: "1:861407056407:web:935c2cc40563f9b0f7c252"
-};
+const firebaseConfig = { 
+    apiKey: "AIzaSyAvfGpds67h1nC0sFw_sZ9Y8dL1tr35bfA",
+    authDomain: "lms-web-yc.firebaseapp.com",
+    projectId: "lms-web-yc",
+    storageBucket: "lms-web-yc.appspot.com",
+    messagingSenderId: "612000957833",
+    appId: "1:612000957833:web:87ce4b1010c1bd87accd58"
+  };
 
 // To check for multiple apps. Currently working without this.
 // Import needed for compatibility with Next
