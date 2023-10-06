@@ -9,7 +9,8 @@ export default function ContentCards({ item, handleDelete }) {
     <div className="max-w-sm p-6 mb-8 bg-white border border-gray-200 rounded-lg shadow ">
       <span className="flex justify-between">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{item?.topic}</h5>
-        <span onClick={()=> handleDelete(item)}
+        {/* <span onClick={()=> handleDelete(item)} */}
+        <span onClick={()=> alert('Disabled for Demo.')}
         className="flex justify-center items-center hover:text-blue-600 cursor-pointer border w-7 h-7 rounded-[100%] bg-gray-100">X</span>
       </span>
       <p className="mb-3 font-normal text-gray-700 bg-opacity-50 bg-violet-300 rounded-full w-24 px-3 py-1 font-semibold leading-tight text-violet-900 whitespace-nowrap">{item?.time}</p>
